@@ -26,7 +26,7 @@ import {
 import { loadJson, saveJson } from "./utils/json";
 import { hashCode } from "./component/BookmarkManager/utils";
 import { PopoverWebView } from "./component/PopoverWebView";
-import {createTestPromt} from "./promts/test";
+import {processAiRequest} from "./promts/withAnswer";
 
 export const WEB_BROWSER_VIEW_ID = "surfing-view";
 export class SurfingView extends ItemView {
@@ -280,7 +280,8 @@ export class SurfingView extends ItemView {
 
 			await this.registerContextMenuInWebcontents(webContents);
 			await this.registerJavascriptInWebcontents(webContents);
-			createTestPromt(webContents);
+			//createTestPromt(webContents);
+			await processAiRequest(this.app, webContents, 'Так, например, если программу prog.c скомпилировать с директивой linux> gcc –m32 prog.c то эта программа будет корректно выполняться и на 32-разрядной машине, и на 64-разрядной. Программа, скомпилированная с директивой linux> gcc –m64 prog.c напротив, будет выполняться только на 64-разрядной машине.');
 
 			// For getting keyboard event from webview
 			webContents.on("before-input-event", (event: any, input: any) => {
