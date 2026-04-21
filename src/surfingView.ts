@@ -26,6 +26,7 @@ import {
 import { loadJson, saveJson } from "./utils/json";
 import { hashCode } from "./component/BookmarkManager/utils";
 import { PopoverWebView } from "./component/PopoverWebView";
+import {createTestPromt} from "./promts/test";
 
 export const WEB_BROWSER_VIEW_ID = "surfing-view";
 export class SurfingView extends ItemView {
@@ -64,6 +65,7 @@ export class SurfingView extends ItemView {
 		newLeaf: boolean,
 		state: WebBrowserViewState
 	) {
+		console.log(state.url);
 		const pluginSettings = plugin.settings;
 		const isOpenInSameTab = pluginSettings.openInSameTab;
 		const highlightInSameTab = pluginSettings.highlightInSameTab;
@@ -278,6 +280,7 @@ export class SurfingView extends ItemView {
 
 			await this.registerContextMenuInWebcontents(webContents);
 			await this.registerJavascriptInWebcontents(webContents);
+			createTestPromt(webContents);
 
 			// For getting keyboard event from webview
 			webContents.on("before-input-event", (event: any, input: any) => {
